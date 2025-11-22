@@ -5,11 +5,11 @@ import { ArrowLeft, MessageSquare, CheckCircle2, Mail, Phone, MapPin, Sparkles, 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { candidateData } from "@/data/candidateData"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 
 type FormType = "contact" | "volunteer"
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
@@ -253,6 +253,21 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-linear-to-br from-green-50 via-stone-50 to-green-50/30 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-green-800 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-stone-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
   )
 }
 
