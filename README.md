@@ -15,11 +15,9 @@ Before you begin, ensure you have the following installed on your system:
 If you have Git installed, clone the repository using:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Talhanasar/IEB-Election-Site.git
 cd IEB-Election-Site
 ```
-
-Replace `<repository-url>` with the actual Git repository URL.
 
 ### Option 2: Download as ZIP
 
