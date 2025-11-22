@@ -20,12 +20,6 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 order-2 lg:order-1 pt-10 lg:pt-0">
-            
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-sm text-green-900 text-xs font-bold uppercase tracking-[0.15em] border-2 border-green-300/60 shadow-md">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse shadow-sm" />
-              {candidateData.campaignSlogan}
-            </div>
-
             {/* Electoral symbol (marka) with enhanced design */}
             <div className="relative w-24 h-24 md:w-32 md:h-32">
               <div className="absolute inset-0 bg-linear-to-br from-green-100 to-green-50 rounded-full blur-xl opacity-50" />

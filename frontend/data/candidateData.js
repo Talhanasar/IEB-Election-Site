@@ -113,9 +113,6 @@ export const candidateData = {
 
   // Calendar
   calendar: {
-    // Google Calendar embed URL - Replace with your actual public Google Calendar ID
-    // To get your calendar ID: Go to Google Calendar > Settings > Integrate calendar > Copy the calendar ID
-    // Format: https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID
     embedUrl: "https://calendar.google.com/calendar/embed?src=1fafa8ab28415db6a09b018be97495592b38dba0cf79e60af85612ddcfc83e27%40group.calendar.google.com&ctz=Asia%2FDhaka"
   }
 }
