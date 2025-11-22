@@ -20,15 +20,15 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 order-2 lg:order-1 pt-10 lg:pt-0">
-            {/* Electoral symbol (marka) with enhanced design */}
-            <div className="relative w-24 h-24 md:w-32 md:h-32">
-              <div className="absolute inset-0 bg-linear-to-br from-green-100 to-green-50 rounded-full blur-xl opacity-50" />
+            {/* BNP Poster */}
+            <div className="relative w-fit">
               <Image
-                src={candidateData.images.electoralSymbol}
-                alt="Sheaf of Paddy (Dhaner Sheesh) Symbol"
-                fill
-                sizes="(max-width: 768px) 96px, 128px"
-                className="object-contain drop-shadow-lg relative z-10"
+                src={candidateData.images.bnpPoster}
+                alt="BNP Campaign Poster"
+                width={350}
+                height={100}
+                className="object-contain w-full h-auto"
+                priority
               />
             </div>
 

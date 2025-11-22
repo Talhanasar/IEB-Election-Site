@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Users, MessageSquare } from "lucide-react"
+import Link from "next/link"
 import { candidateData } from "@/data/candidateData"
 
 export default function GetInvolvedSection() {
@@ -23,8 +24,12 @@ export default function GetInvolvedSection() {
               Join our dedicated team on the ground. Help organize events, spread the message, and drive change in
               your local area.
             </p>
-            <Button size="lg" className="w-full bg-green-800 hover:bg-green-900 text-white h-12 rounded-full">
-              Join the Team
+            <Button
+              asChild
+              size="lg"
+              className="w-full bg-green-800 hover:bg-green-900 text-white h-12 rounded-full"
+            >
+              <Link href="/form/volunteer">Join the Team</Link>
             </Button>
           </div>
 
@@ -41,11 +46,12 @@ export default function GetInvolvedSection() {
               you.
             </p>
             <Button
+              asChild
               size="lg"
               variant="outline"
               className="w-full border-stone-300 hover:bg-white h-12 rounded-full text-stone-700 bg-transparent"
             >
-              Send a Message
+              <Link href="/form/contact">Send a Message</Link>
             </Button>
           </div>
         </div>

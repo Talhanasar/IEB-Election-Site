@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Users, CheckCircle2 } from "lucide-react"
+import { ArrowRight, Users, CheckCircle2, Images } from "lucide-react"
 import { candidateData } from "@/data/candidateData"
+import Link from "next/link"
 
 const iconMap = {
   Users,
@@ -28,7 +29,7 @@ export default function ManifestoSection() {
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {candidateData.manifesto.items.map((item, i) => {
             const Icon = iconMap[item.icon as keyof typeof iconMap] || CheckCircle2
             return (
@@ -44,6 +45,32 @@ export default function ManifestoSection() {
               </div>
             )
           })}
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mt-16 pt-16 border-t border-green-700/50">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-green-700 rounded-xl flex items-center justify-center">
+                <Images className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-2">Campaign Gallery</h3>
+                <p className="text-green-100/80">
+                  Explore photos and moments from our campaign journey
+                </p>
+              </div>
+            </div>
+            <Button
+              asChild
+              className="bg-white text-green-900 hover:bg-green-50 h-14 px-8 text-lg rounded-full font-semibold"
+            >
+              <Link href="/gallery" className="flex items-center">
+                View Gallery
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
