@@ -41,8 +41,17 @@ export default function HeroSection() {
               <span className="text-red-600">.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-stone-600 max-w-2xl leading-relaxed">
-              {candidateData.bio.short}
+            <p className="text-lg md:text-xl md:mb-12 text-stone-600 max-w-2xl leading-relaxed">
+              {candidateData.bio.shortSegments?.length
+                ? candidateData.bio.shortSegments.map((segment, index) => (
+                    <span
+                      key={`bio-segment-${index}`}
+                      className={segment.className || undefined}
+                    >
+                      {segment.text}
+                    </span>
+                  ))
+                : candidateData.bio.short}
             </p>
 
             <div className="flex flex-col md:flex-row gap-4 w-full">

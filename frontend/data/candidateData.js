@@ -22,7 +22,24 @@ export const candidateData = {
   
   // Bio & Description
   bio: {
-    short: "Standing together for democracy, justice, and a prosperous future. Join us in building a better tomorrow for our community.",
+    short:
+      "Standing together for democracy, justice, and a prosperous future for every Bangladeshi family. Join us in building a safer, stronger community where opportunity belongs to all of us.",
+    shortSegments: [
+      { text: "Standing together for ", className: "" },
+      { text: "democracy", className: "text-green-700 font-semibold" },
+      { text: ", ", className: "" },
+      { text: "justice", className: "text-green-700 font-semibold" },
+      { text: ", and a ", className: "" },
+      {
+        text: "prosperous future",
+        className: "text-green-700 font-semibold"
+      },
+      { text: " for every Bangladeshi family. ", className: "" },
+      { text: "Join us", className: "text-green-700 font-semibold" },
+      { text: " in building a ", className: "" },
+      { text: "safer, stronger community", className: "text-green-700 font-semibold" },
+      { text: " where opportunity belongs to all of us.", className: "" }
+    ],
     long: [
       "Humam Quader Chowdhury is a Bangladeshi political figure best known as the son of BNP leader Salauddin Quader Chowdhury (executed in 2015 after conviction by the International Crimes Tribunal). Hummam has served on BNP bodies, publicly disputed his father's trial, and in August 2016 was reportedly taken by men in plain clothes and held in secret for about seven months before returning in March 2017. Human-rights groups treated his disappearance as part of a broader pattern of enforced disappearances in Bangladesh.",
       "His vision is simple yet powerful: a Bangladesh where every citizen's voice is heard, where the rule of law prevails, and where economic opportunity is accessible to all, not just the privileged few."
