@@ -114,13 +114,13 @@ export default function Navbar() {
           <Button
             asChild
             variant="outline"
-            className="hidden sm:flex border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
+            className="hidden md:flex border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
           >
             <Link href="/form/volunteer">Become a Volunteer</Link>
           </Button>
           <Button
             asChild
-            className="hidden sm:flex bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
+            className="hidden md:flex bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
           >
             <Link href="#donate">Donate</Link>
           </Button>
@@ -128,7 +128,11 @@ export default function Navbar() {
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-stone-700 hover:text-green-800 hover:bg-green-50 transition-colors"
+            className={`md:hidden p-2 rounded-lg transition-colors relative z-50 ${
+              isMobileMenuOpen
+                ? "text-white bg-green-900/70"
+                : "text-stone-700 hover:text-green-800 hover:bg-green-50"
+            }`}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (

@@ -6,7 +6,7 @@ import { candidateData } from "@/data/candidateData";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center bg-linear-to-br from-stone-50 via-white to-green-50/30 overflow-hidden py-10">
+    <section className="relative min-h-[75vh] md:min-h-[85vh] flex items-center bg-linear-to-br from-stone-50 via-white to-green-50/30 overflow-hidden py-8 md:py-10">
       {/* Background texture */}
       <div
         className="absolute inset-0 opacity-[0.02]"
@@ -21,7 +21,7 @@ export default function HeroSection() {
         <div className="absolute bottom-[-20%] right-[-10%] w-[45%] h-[45%] bg-red-200/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-2 md:px-4 relative z-10">
         <div className="flex flex-col-reverse sm:flex-row gap-10 lg:gap-16 items-center">
           {/* Left Column */}
           <div className="flex-1 space-y-6">
@@ -45,11 +45,11 @@ export default function HeroSection() {
               {candidateData.bio.short}
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col md:flex-row gap-4 w-full">
               <Button
                 asChild
                 size="lg"
-                className="bg-linear-to-r from-green-800 to-green-900 hover:from-green-900 hover:to-green-950 text-white h-14 px-8 text-lg rounded-full shadow-xl shadow-green-900/20 hover:shadow-green-900/30 transition-all transform hover:scale-105 w-full sm:w-auto"
+                className="bg-linear-to-r from-green-800 to-green-900 hover:from-green-900 hover:to-green-950 text-white h-14 px-8 text-lg rounded-full shadow-xl shadow-green-900/20 hover:shadow-green-900/30 transition-all transform hover:scale-105 w-full sm:flex-1"
               >
                 <Link
                   href="#volunteer"
@@ -63,7 +63,7 @@ export default function HeroSection() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-2 border-green-800/30 text-green-900 hover:bg-green-50 hover:border-green-800/50 h-14 px-8 text-lg bg-white/50 backdrop-blur-sm rounded-full font-semibold w-full sm:w-auto"
+                className="border-2 border-green-800/30 text-green-900 hover:bg-green-50 hover:border-green-800/50 h-14 px-8 text-lg bg-white/50 backdrop-blur-sm rounded-full font-semibold w-full sm:flex-1"
               >
                 <Link
                   href="#manifesto"
