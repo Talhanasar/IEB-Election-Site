@@ -6,10 +6,12 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { candidateData } from "@/data/candidateData"
+import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [activeHash, setActiveHash] = useState("")
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -28,6 +30,22 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleHashChange)
     }
   }, [])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [isMobileMenuOpen])
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
 
   const isActive = (href: string) => {
     if (href.startsWith("/")) {
@@ -61,10 +79,10 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col min-w-0">
-            <span className="font-serif text-xl font-bold tracking-tight text-green-900 leading-tight truncate">
+            <span className="font-serif text-sm lg:text-xl sm:text-lg font-bold tracking-tight text-green-900 leading-tight truncate">
               {candidateData.navName.toUpperCase()}<span className="text-red-600">.</span>
             </span>
-            <span className="text-xs text-stone-500 font-medium uppercase tracking-wider">
+            <span className="text-[10px] sm:text-xs text-stone-500 font-medium uppercase tracking-wider">
               {candidateData.tagline}
             </span>
           </div>
@@ -102,12 +120,80 @@ export default function Navbar() {
           </Button>
           <Button
             asChild
-            className="bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
+            className="hidden sm:flex bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
           >
             <Link href="#donate">Donate</Link>
           </Button>
+
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-stone-700 hover:text-green-800 hover:bg-green-50 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            onClick={closeMobileMenu}
+          />
+
+          {/* Mobile Menu */}
+          <div className="fixed top-20 left-0 right-0 bg-white border-b border-stone-200 shadow-xl z-50 md:hidden animate-in slide-in-from-top duration-300">
+            <nav className="container mx-auto px-4 py-6">
+              <div className="flex flex-col gap-4">
+                {navLinks.map((link) => {
+                  const active = isActive(link.href)
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                        active
+                          ? "text-green-900 bg-green-50 font-semibold"
+                          : "text-stone-700 hover:text-green-800 hover:bg-green-50/50"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                })}
+
+                {/* Mobile Menu Buttons */}
+                <div className="flex flex-col gap-3 pt-4 border-t border-stone-200">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
+                    onClick={closeMobileMenu}
+                  >
+                    <Link href="/form/volunteer">Become a Volunteer</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    className="w-full bg-green-800 hover:bg-green-900 text-white rounded-full shadow-lg shadow-green-900/20"
+                    onClick={closeMobileMenu}
+                  >
+                    <Link href="#donate">Donate</Link>
+                  </Button>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </>
+      )}
     </header>
   )
 }

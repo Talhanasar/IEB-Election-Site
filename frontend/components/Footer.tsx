@@ -27,7 +27,7 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="text-2xl font-serif font-bold text-white leading-tight truncate">
+                <span className="text-2xl font-serif font-bold text-white leading-tight">
                   {candidateData.firstName.toUpperCase()} {candidateData.lastName.toUpperCase()}<span className="text-red-600">.</span>
                 </span>
                 <span className="text-xs text-stone-400 font-medium uppercase tracking-wider">
