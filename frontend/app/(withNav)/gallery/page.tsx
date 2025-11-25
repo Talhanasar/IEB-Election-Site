@@ -72,21 +72,21 @@ export default function GalleryPage() {
   return (
     <>
       {/* Gallery Header */}
-        <section className="py-20 bg-linear-to-br from-green-900 via-green-800 to-green-900 text-white relative overflow-hidden">
+        <section className="py-12 md:py-20 bg-linear-to-br from-green-900 via-green-800 to-green-900 text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
+            <div className="absolute top-0 left-0 w-48 md:w-96 h-48 md:h-96 bg-white rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-white rounded-full blur-3xl" />
           </div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm mb-6 border border-white/20">
-                <Images className="w-6 h-6" />
-                <span className="text-lg font-semibold">Campaign Gallery</span>
+              <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/10 backdrop-blur-sm mb-4 md:mb-6 border border-white/20">
+                <Images className="w-5 md:w-6 h-5 md:h-6" />
+                <span className="text-base md:text-lg font-semibold">Campaign Gallery</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-3 md:mb-4">
                 Our Campaign Journey
               </h1>
-              <p className="text-lg text-green-100/80 max-w-2xl mx-auto">
+              <p className="text-sm md:text-base lg:text-lg text-green-100/80 max-w-2xl mx-auto px-2">
                 Moments, memories, and milestones from our campaign for a better Bangladesh
               </p>
             </div>
@@ -94,9 +94,9 @@ export default function GalleryPage() {
         </section>
 
         {/* Category Filter */}
-        <section className="py-8 bg-white border-b border-stone-200 sticky top-20 z-40 shadow-sm">
+        <section className="py-6 md:py-8 bg-white border-b border-stone-200 sticky top-20 z-40 shadow-sm">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -105,7 +105,7 @@ export default function GalleryPage() {
                     setIsLoading(true)
                     setTimeout(() => setIsLoading(false), 300)
                   }}
-                  className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
                     selectedCategory === category
                       ? "bg-green-800 text-white shadow-lg shadow-green-900/20 scale-105"
                       : "bg-stone-100 text-stone-700 hover:bg-stone-200"
@@ -113,7 +113,7 @@ export default function GalleryPage() {
                 >
                   {category}
                   {selectedCategory === category && (
-                    <span className="ml-2 text-xs">({filteredImages.length})</span>
+                    <span className="ml-1 md:ml-2 text-xs">({filteredImages.length})</span>
                   )}
                 </button>
               ))}
@@ -122,7 +122,7 @@ export default function GalleryPage() {
         </section>
 
         {/* Gallery Grid */}
-        <section className="py-16 bg-stone-50 min-h-screen">
+        <section className="py-12 md:py-16 bg-stone-50 min-h-screen">
           <div className="container mx-auto px-4">
             {isLoading ? (
               <div className="flex items-center justify-center py-20">
@@ -130,15 +130,15 @@ export default function GalleryPage() {
               </div>
             ) : filteredImages.length === 0 ? (
               <div className="text-center py-20">
-                <p className="text-stone-500 text-lg">No images found in this category.</p>
+                <p className="text-stone-500 text-base md:text-lg">No images found in this category.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
                 {filteredImages.map((image, index) => (
                   <div
                     key={image.id}
                     onClick={() => openLightbox(image.id)}
-                    className="group relative aspect-square rounded-xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-[1.02]"
+                    className="group relative aspect-square rounded-lg md:rounded-xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-[1.02]"
                     style={{
                       animationDelay: `${index * 50}ms`,
                     }}
@@ -147,20 +147,20 @@ export default function GalleryPage() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="inline-block text-xs font-semibold text-white uppercase tracking-wider bg-green-800/90 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                      <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span className="inline-block text-xs font-semibold text-white uppercase tracking-wider bg-green-800/90 px-2 md:px-3 py-1 md:py-1.5 rounded-full backdrop-blur-sm">
                           {image.category}
                         </span>
-                        <p className="text-white text-sm mt-2 font-medium">{image.alt}</p>
+                        <p className="text-white text-xs md:text-sm mt-1 md:mt-2 font-medium line-clamp-2">{image.alt}</p>
                       </div>
                     </div>
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg">
-                        <Images className="w-4 h-4 text-green-800" />
+                    <div className="absolute top-2 md:top-4 right-2 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-1.5 md:p-2 shadow-lg">
+                        <Images className="w-3 md:w-4 h-3 md:h-4 text-green-800" />
                       </div>
                     </div>
                   </div>
@@ -169,8 +169,8 @@ export default function GalleryPage() {
             )}
 
             {/* Image Count */}
-            <div className="text-center mt-12">
-              <p className="text-stone-600">
+            <div className="text-center mt-8 md:mt-12">
+              <p className="text-sm md:text-base text-stone-600">
                 Showing <span className="font-semibold text-green-800">{filteredImages.length}</span>{" "}
                 {filteredImages.length === 1 ? "image" : "images"}
                 {selectedCategory !== "All" && ` in ${selectedCategory}`}
@@ -182,15 +182,15 @@ export default function GalleryPage() {
       {/* Lightbox Modal */}
       {selectedImageData && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-3 md:p-4 animate-in fade-in duration-300"
           onClick={closeLightbox}
         >
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 z-50 text-white hover:text-green-400 transition-colors bg-black/50 rounded-full p-2 backdrop-blur-sm"
+            className="absolute top-3 md:top-4 right-3 md:right-4 z-50 text-white hover:text-green-400 transition-colors bg-black/50 rounded-full p-2 backdrop-blur-sm"
             aria-label="Close"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 md:w-6 h-5 md:h-6" />
           </button>
 
           <div
@@ -214,30 +214,30 @@ export default function GalleryPage() {
                     e.stopPropagation()
                     navigateImage("prev")
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 backdrop-blur-sm transition-all z-50"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 md:p-3 backdrop-blur-sm transition-all z-50"
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 md:w-6 h-5 md:h-6" />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation()
                     navigateImage("next")
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 backdrop-blur-sm transition-all z-50"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 md:p-3 backdrop-blur-sm transition-all z-50"
                   aria-label="Next image"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 md:w-6 h-5 md:h-6" />
                 </button>
               </>
             )}
 
             {/* Image Info */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm rounded-full px-6 py-3 text-white text-sm">
+            <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm rounded-full px-3 md:px-6 py-2 md:py-3 text-white text-xs md:text-sm">
               <span className="font-semibold">{selectedImageData.alt}</span>
-              <span className="mx-2">•</span>
+              <span className="mx-1 md:mx-2">•</span>
               <span className="text-green-400">{selectedImageData.category}</span>
-              <span className="mx-2">•</span>
+              <span className="mx-1 md:mx-2">•</span>
               <span>
                 {filteredImages.findIndex((img) => img.id === selectedImage) + 1} / {filteredImages.length}
               </span>
