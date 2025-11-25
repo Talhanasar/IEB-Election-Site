@@ -3,54 +3,10 @@
 import { useState, useEffect } from "react"
 import { Images, X, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
+import { candidateData } from "@/data/candidateData"
 
-// All gallery images from the gallery folder
-const galleryImages = [
-  {
-    id: 1,
-    src: "/humam/gallery/468479118_10162138253705851_707064162271510845_n.jpg",
-    alt: "Campaign Event",
-    category: "Events"
-  },
-  {
-    id: 2,
-    src: "/humam/gallery/469172218_10162297010895851_6442109088011882632_n.jpg",
-    alt: "Public Rally",
-    category: "Rallies"
-  },
-  {
-    id: 3,
-    src: "/humam/gallery/499956981_10162894087195851_7260270319155560321_n.jpg",
-    alt: "Community Meeting",
-    category: "Meetings"
-  },
-  {
-    id: 4,
-    src: "/humam/gallery/516156175_10163113937310851_8818284353665269811_n.jpg",
-    alt: "Campaign Activity",
-    category: "Events"
-  },
-  {
-    id: 5,
-    src: "/humam/gallery/517030436_10163148104655851_6253285426090138686_n.jpg",
-    alt: "Public Engagement",
-    category: "Engagement"
-  },
-  {
-    id: 6,
-    src: "/humam/gallery/518365805_10163149570555851_2156680211438500341_n.jpg",
-    alt: "Campaign Rally",
-    category: "Rallies"
-  },
-  {
-    id: 7,
-    src: "/humam/gallery/news.jpg",
-    alt: "News Coverage",
-    category: "Media"
-  }
-]
-
-const categories = ["All", "Events", "Rallies", "Meetings", "Engagement", "Media"]
+const galleryImages = candidateData.gallery.images
+const categories = candidateData.gallery.categories
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
