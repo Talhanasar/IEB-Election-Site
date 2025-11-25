@@ -127,7 +127,7 @@ export default function Navbar() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 h-screen bg-black/50 backdrop-blur-sm z-40 md:hidden"
             onClick={closeMobileMenu}
           />
 
