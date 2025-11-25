@@ -10,26 +10,7 @@ import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
   const pathname = usePathname()
-  const [activeHash, setActiveHash] = useState("")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash)
-    }
-
-    // Set initial hash
-    handleHashChange()
-
-    // Listen for hash changes
-    window.addEventListener("hashchange", handleHashChange)
-    window.addEventListener("scroll", handleHashChange)
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange)
-      window.removeEventListener("scroll", handleHashChange)
-    }
-  }, [])
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -51,17 +32,14 @@ export default function Navbar() {
     if (href.startsWith("/")) {
       return pathname === href
     }
-    if (href.startsWith("#")) {
-      return activeHash === href || (href === "#about" && activeHash === "")
-    }
     return false
   }
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "#manifesto", label: "Manifesto" },
-    { href: "/gallery", label: "Gallery" },
-    { href: "#contact", label: "Contact" }
+    { href: "/", mbHref:"/", label: "Home" },
+    { href: "/#manifesto", mbHref:"/#manifesto", label: "Manifesto" },
+    { href: "/gallery", mbHref:"/gallery", label: "Gallery" },
+    { href: "/#contact", mbHref:"/#contactmb", label: "Contact" }
   ]
 
   return (
@@ -95,7 +73,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative transition-colors ${
+                className={`relative transition-colors ${ 
                   active
                     ? "text-green-900 font-semibold"
                     : "text-stone-600 hover:text-green-800"
@@ -161,8 +139,8 @@ export default function Navbar() {
                   const active = isActive(link.href)
                   return (
                     <Link
-                      key={link.href}
-                      href={link.href}
+                      key={link.mbHref}
+                      href={link.mbHref}
                       onClick={closeMobileMenu}
                       className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                         active

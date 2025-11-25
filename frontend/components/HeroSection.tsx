@@ -61,7 +61,7 @@ export default function HeroSection() {
                 className="bg-linear-to-r from-green-800 to-green-900 hover:from-green-900 hover:to-green-950 text-white h-14 px-8 text-lg rounded-full shadow-xl shadow-green-900/20 hover:shadow-green-900/30 transition-all transform hover:scale-105 w-full sm:flex-1"
               >
                 <Link
-                  href="#volunteer"
+                  href="/#volunteer"
                   className="flex items-center justify-center"
                 >
                   Join the Movement

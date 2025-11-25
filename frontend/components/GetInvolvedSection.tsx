@@ -5,8 +5,8 @@ import { candidateData } from "@/data/candidateData"
 
 export default function GetInvolvedSection() {
   return (
-    <section id="volunteer" className="py-24 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-24 bg-white">
+      <div id="volunteer" className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-4xl font-serif font-bold text-green-900">Get Involved</h2>
           <p className="text-stone-600 text-lg">
@@ -34,7 +34,7 @@ export default function GetInvolvedSection() {
           </div>
 
           <div
-            id="contact"
+            id="contactmb"
             className="bg-stone-50 rounded-2xl p-8 border border-stone-200 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all duration-300 group"
           >
             <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6 text-red-800 group-hover:scale-110 transition-transform">
