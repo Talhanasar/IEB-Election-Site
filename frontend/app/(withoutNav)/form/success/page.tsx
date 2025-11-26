@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { ArrowLeft, MessageSquare, CheckCircle2, Mail, Phone, MapPin, Sparkles, Clock, Heart, HandHeart, Users } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { candidateData } from "@/data/candidateData"
+import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 import { useEffect, useState, Suspense } from "react"
 
 type FormType = "contact" | "volunteer"
@@ -13,6 +13,7 @@ function SuccessContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
+  const { data } = useLanguageAndData()
 
   const formType = (searchParams.get("type") || "contact") as FormType
   const email = searchParams.get("email") || ""
@@ -67,7 +68,7 @@ function SuccessContent() {
                 </h1>
                 <p className="text-green-100 text-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
                   {isContact
-                    ? `Thank you for reaching out to ${candidateData.firstName} ${candidateData.lastName}`
+                    ? `Thank you for reaching out to ${data.firstName} ${data.lastName}`
                     : "Thank you for your interest in volunteering"}
                 </p>
               </div>
@@ -92,7 +93,7 @@ function SuccessContent() {
                   ) : (
                     <>
                       Your volunteer application for{" "}
-                      <span className="font-semibold text-green-800">{candidateData.firstName}'s campaign</span> has
+                      <span className="font-semibold text-green-800">{data.firstName}'s campaign</span> has
                       been received successfully. Our team will review your application and get back to you within{" "}
                       <span className="font-semibold text-green-800">3-5 business days</span>.
                     </>
@@ -231,20 +232,20 @@ function SuccessContent() {
                 <>
                   Need immediate assistance?{" "}
                   <a
-                    href={`tel:${candidateData.contact.phone}`}
+                    href={`tel:${data.contact.phone}`}
                     className="text-green-800 hover:underline font-semibold"
                   >
-                    Call us at {candidateData.contact.phone}
+                    Call us at {data.contact.phone}
                   </a>
                 </>
               ) : (
                 <>
                   Questions about your application?{" "}
                   <a
-                    href={`mailto:${candidateData.contact.email}`}
+                    href={`mailto:${data.contact.email}`}
                     className="text-green-800 hover:underline font-semibold"
                   >
-                    Contact us at {candidateData.contact.email}
+                    Contact us at {data.contact.email}
                   </a>
                 </>
               )}
