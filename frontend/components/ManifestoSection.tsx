@@ -60,9 +60,9 @@ export default function ManifestoSection() {
                 <Images className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-2">Campaign Gallery</h3>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-2">{t.gallery.cta.title}</h3>
                 <p className="text-green-100/80">
-                  Explore photos and moments from our campaign journey
+                  {t.gallery.cta.description}
                 </p>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function ManifestoSection() {
               className="bg-white text-green-900 hover:bg-green-50 h-14 px-8 text-lg rounded-full font-semibold"
             >
               <Link href="/gallery" className="flex items-center">
-                View Gallery
+                {t.gallery.cta.button}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>

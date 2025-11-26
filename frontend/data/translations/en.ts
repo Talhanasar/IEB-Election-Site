@@ -31,6 +31,19 @@ export const enTranslations = {
     description: "Moments, memories, and milestones from our campaign for a better Bangladesh",
     noImages: "No images found in this category.",
     showing: "Showing",
+    cta: {
+      title: "Campaign Gallery",
+      description: "Explore photos and moments from our campaign journey",
+      button: "View Gallery",
+    },
+    categories: {
+      all: "All",
+      events: "Events",
+      rallies: "Rallies",
+      meetings: "Meetings",
+      engagement: "Engagement",
+      media: "Media",
+    },
   },
   calendar: {
     title: "Upcoming Events",

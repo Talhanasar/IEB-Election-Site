@@ -8,15 +8,22 @@ import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 export default function GalleryPage() {
   const { t, data } = useLanguageAndData()
   const galleryImages = data.gallery.images
-  const categories = data.gallery.categories
-  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
+  // Map the selected category key (all, events, rallies, etc.)
+  // to the actual category label used in the image data,
+  // using the current language translations.
+  const getCategoryLabelForKey = (key: string) =>
+    (t.gallery.categories as Record<string, string>)[key]
+
   const filteredImages =
-    selectedCategory === "All"
+    selectedCategory === "all"
       ? galleryImages
-      : galleryImages.filter((img) => img.category === selectedCategory)
+      : galleryImages.filter(
+          (img) => img.category === getCategoryLabelForKey(selectedCategory)
+        )
 
   const openLightbox = (imageId: number) => {
     setSelectedImage(imageId)
@@ -97,22 +104,22 @@ export default function GalleryPage() {
         <section className="py-6 md:py-8 bg-white border-b border-stone-200 sticky top-20 z-40 shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
-              {categories.map((category) => (
+              {Object.entries(t.gallery.categories).map(([key, label]) => (
                 <button
-                  key={category}
+                  key={key}
                   onClick={() => {
-                    setSelectedCategory(category)
+                    setSelectedCategory(key)
                     setIsLoading(true)
                     setTimeout(() => setIsLoading(false), 300)
                   }}
                   className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
-                    selectedCategory === category
+                    selectedCategory === key
                       ? "bg-green-800 text-white shadow-lg shadow-green-900/20 scale-105"
                       : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                   }`}
                 >
-                  {category}
-                  {selectedCategory === category && (
+                  {label}
+                  {selectedCategory === key && (
                     <span className="ml-1 md:ml-2 text-xs">({filteredImages.length})</span>
                   )}
                 </button>
@@ -171,9 +178,13 @@ export default function GalleryPage() {
             {/* Image Count */}
             <div className="text-center mt-8 md:mt-12">
               <p className="text-sm md:text-base text-stone-600">
-                {t.gallery.showing} <span className="font-semibold text-green-800">{filteredImages.length}</span>{" "}
+                {t.gallery.showing}{" "}
+                <span className="font-semibold text-green-800">
+                  {filteredImages.length}
+                </span>{" "}
                 {filteredImages.length === 1 ? "image" : "images"}
-                {selectedCategory !== "All" && ` in ${selectedCategory}`}
+                {selectedCategory !== "all" &&
+                  ` in ${getCategoryLabelForKey(selectedCategory)}`}
               </p>
             </div>
           </div>

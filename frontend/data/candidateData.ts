@@ -227,7 +227,6 @@ export const candidateData = {
           category: "Media",
         },
       ],
-      categories: ["All", "Events", "Rallies", "Meetings", "Engagement", "Media"],
     },
 
     // Poll
@@ -483,7 +482,6 @@ export const candidateData = {
           category: "মিডিয়া",
         },
       ],
-      categories: ["সব", "ইভেন্ট", "র‍্যালি", "সভা", "সংযুক্তি", "মিডিয়া"],
     },
 
     // পোল
