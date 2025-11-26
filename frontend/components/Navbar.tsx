@@ -5,13 +5,14 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Globe } from "lucide-react"
 import { useLanguage } from "@/hooks/useLanguage"
 import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
   const { language, setLanguage } = useLanguage()
   const { t ,data } = useLanguageAndData()
 
@@ -93,13 +94,70 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button
-            onClick={() => setLanguage(language === "en" ? "bn" : "en")}
-            variant="ghost"
-            className="text-sm font-semibold text-stone-700 hover:text-green-800 px-3 rounded-full"
-          >
-            {language === "en" ? "বাংলা" : "English"}
-          </Button>
+          {/* Language Selector Dropdown */}
+          <div className="relative group">
+            <button
+              onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+              className="flex items-center gap-2 px-3 py-2 rounded-full border border-stone-200 bg-white hover:bg-stone-50 hover:border-green-400 transition-all duration-200 group"
+            >
+              <Globe className="w-4 h-4 text-stone-600 group-hover:text-green-700" />
+              <span className="text-sm font-semibold text-stone-700 group-hover:text-green-800">
+                {language === "en" ? "EN" : "BN"}
+              </span>
+            </button>
+
+            {/* Language Dropdown Menu */}
+            {isLanguageDropdownOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-30"
+                  onClick={() => setIsLanguageDropdownOpen(false)}
+                />
+                <div className="absolute top-full right-0 mt-2 bg-white border border-stone-200 rounded-xl shadow-lg z-40 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                  <button
+                    onClick={() => {
+                      setLanguage("en")
+                      setIsLanguageDropdownOpen(false)
+                    }}
+                    className={`w-full px-4 py-3 text-left text-sm font-medium transition-all duration-150 flex items-center gap-3 ${
+                      language === "en"
+                        ? "bg-green-50 text-green-800"
+                        : "text-stone-700 hover:bg-stone-50"
+                    }`}
+                  >
+                    <span className="text-lg">🇬🇧</span>
+                    <div className="flex flex-col">
+                      <span>English</span>
+                    </div>
+                    {language === "en" && (
+                      <span className="ml-auto text-green-600">✓</span>
+                    )}
+                  </button>
+                  <div className="border-t border-stone-100" />
+                  <button
+                    onClick={() => {
+                      setLanguage("bn")
+                      setIsLanguageDropdownOpen(false)
+                    }}
+                    className={`w-full px-4 py-3 text-left text-sm font-medium transition-all duration-150 flex items-center gap-3 ${
+                      language === "bn"
+                        ? "bg-green-50 text-green-800"
+                        : "text-stone-700 hover:bg-stone-50"
+                    }`}
+                  >
+                    <span className="text-lg">🇧🇩</span>
+                    <div className="flex flex-col">
+                      <span>বাংলা</span>
+                    </div>
+                    {language === "bn" && (
+                      <span className="ml-auto text-green-600">✓</span>
+                    )}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+
           <Button
             asChild
             variant="outline"
@@ -166,30 +224,50 @@ export default function Navbar() {
 
                 {/* Mobile Menu Buttons */}
                 <div className="flex flex-col gap-3 pt-4 border-t border-stone-200">
-                  <Button
-                    onClick={() => {
-                      setLanguage(language === "en" ? "bn" : "en")
-                      closeMobileMenu()
-                    }}
-                    variant="outline"
-                    className="w-full border-stone-300 text-stone-700 hover:bg-stone-50 rounded-full"
-                  >
-                    {language === "en" ? "বাংলায় পড়ুন" : "Read in English"}
-                  </Button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        setLanguage("en")
+                        closeMobileMenu()
+                      }}
+                      className={`flex-1 px-4 py-3 rounded-full font-medium text-sm transition-all duration-150 flex items-center justify-center gap-2 ${
+                        language === "en"
+                          ? "bg-green-800 text-white shadow-lg shadow-green-900/20"
+                          : "border border-stone-300 text-stone-700 hover:bg-stone-50"
+                      }`}
+                    >
+                      <span>🇬🇧</span>
+                      English
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLanguage("bn")
+                        closeMobileMenu()
+                      }}
+                      className={`flex-1 px-4 py-3 rounded-full font-medium text-sm transition-all duration-150 flex items-center justify-center gap-2 ${
+                        language === "bn"
+                          ? "bg-green-800 text-white shadow-lg shadow-green-900/20"
+                          : "border border-stone-300 text-stone-700 hover:bg-stone-50"
+                      }`}
+                    >
+                      <span>🇧🇩</span>
+                      বাংলা
+                    </button>
+                  </div>
                   <Button
                     asChild
                     variant="outline"
                     className="w-full border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
                     onClick={closeMobileMenu}
                   >
-                    <Link href="/form/volunteer">Become a Volunteer</Link>
+                    <Link href="/form/volunteer">{t.navbar.volunteer}</Link>
                   </Button>
                   <Button
                     asChild
                     className="w-full bg-green-800 hover:bg-green-900 text-white rounded-full shadow-lg shadow-green-900/20"
                     onClick={closeMobileMenu}
                   >
-                    <Link href="#donate">Donate</Link>
+                    <Link href="#donate">{t.navbar.donate}</Link>
                   </Button>
                 </div>
               </div>

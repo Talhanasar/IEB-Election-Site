@@ -84,10 +84,10 @@ export default function GalleryPage() {
                 <span className="text-base md:text-lg font-semibold">{t.gallery.title}</span>
               </div>
               <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-3 md:mb-4">
-                Our Campaign Journey
+                {t.gallery.subtitle}
               </h1>
               <p className="text-sm md:text-base lg:text-lg text-green-100/80 max-w-2xl mx-auto px-2">
-                Moments, memories, and milestones from our campaign for a better Bangladesh
+                {t.gallery.description}
               </p>
             </div>
           </div>
