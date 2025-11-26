@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation"
 import { ArrowLeft, MessageSquare, Mail, Phone, MapPin } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { candidateData } from "@/data/candidateData"
+import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 
 export default function ContactFormPage() {
+  const { t, data } = useLanguageAndData()
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -63,13 +64,13 @@ export default function ContactFormPage() {
           <div className="text-center">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-green-100 text-green-900 mb-4 md:mb-6">
               <MessageSquare className="w-4 md:w-5 h-4 md:h-5" />
-              <span className="text-sm md:text-base font-semibold">Contact Form</span>
+              <span className="text-sm md:text-base font-semibold">{t.forms.contact.header}</span>
             </div>
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-stone-900 mb-3 md:mb-4">
-              Contact {candidateData.firstName} {candidateData.lastName}
+              {t.forms.contact.header} {data.firstName} {data.lastName}
             </h1>
             <p className="text-sm md:text-base lg:text-lg text-stone-600 max-w-2xl mx-auto px-2">
-              Have a question, concern, or suggestion? We want to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+              {t.forms.contact.description}
             </p>
           </div>
         </div>
@@ -78,19 +79,19 @@ export default function ContactFormPage() {
           {/* Contact Information Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl md:rounded-2xl shadow-lg p-5 md:p-6 sticky top-24">
-              <h2 className="text-lg md:text-xl font-serif font-bold text-stone-900 mb-4 md:mb-6">Contact Information</h2>
+              <h2 className="text-lg md:text-xl font-serif font-bold text-stone-900 mb-4 md:mb-6">{t.contact.title}</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5 text-green-800" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1 text-sm md:text-base">Email</h3>
+                    <h3 className="font-semibold text-stone-900 mb-1 text-sm md:text-base">{t.contact.email}</h3>
                     <a
-                      href={`mailto:${candidateData.contact.email}`}
+                      href={`mailto:${data.contact.email}`}
                       className="text-stone-600 hover:text-green-800 transition-colors text-xs md:text-sm break-all"
                     >
-                      {candidateData.contact.email}
+                      {data.contact.email}
                     </a>
                   </div>
                 </div>
@@ -99,12 +100,12 @@ export default function ContactFormPage() {
                     <Phone className="w-5 h-5 text-green-800" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1 text-sm md:text-base">Phone</h3>
+                    <h3 className="font-semibold text-stone-900 mb-1 text-sm md:text-base">{t.contact.phone}</h3>
                     <a
-                      href={`tel:${candidateData.contact.phone}`}
+                      href={`tel:${data.contact.phone}`}
                       className="text-stone-600 hover:text-green-800 transition-colors text-xs md:text-sm"
                     >
-                      {candidateData.contact.phone}
+                      {data.contact.phone}
                     </a>
                   </div>
                 </div>
@@ -113,10 +114,10 @@ export default function ContactFormPage() {
                     <MapPin className="w-5 h-5 text-green-800" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1 text-sm md:text-base">Office</h3>
+                    <h3 className="font-semibold text-stone-900 mb-1 text-sm md:text-base">{t.contact.office}</h3>
                     <p className="text-stone-600 text-xs md:text-sm">
-                      {candidateData.contact.address.line1}<br />
-                      {candidateData.contact.address.line2}
+                      {data.contact.address.line1}<br />
+                      {data.contact.address.line2}
                     </p>
                   </div>
                 </div>
@@ -131,7 +132,7 @@ export default function ContactFormPage() {
               <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <label htmlFor="fullName" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
-                    Full Name <span className="text-red-600">*</span>
+                    {t.forms.contact.fullName} <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -146,7 +147,7 @@ export default function ContactFormPage() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
-                    Email Address <span className="text-red-600">*</span>
+                    {t.forms.contact.email} <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="email"
@@ -163,7 +164,7 @@ export default function ContactFormPage() {
 
               <div>
                 <label htmlFor="phone" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
-                  Phone Number
+                  {t.forms.contact.phone}
                 </label>
                 <input
                   type="tel"
@@ -178,7 +179,7 @@ export default function ContactFormPage() {
 
               <div>
                 <label htmlFor="subject" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
-                  Subject <span className="text-red-600">*</span>
+                  {t.forms.contact.subject} <span className="text-red-600">*</span>
                 </label>
                 <select
                   id="subject"
@@ -200,7 +201,7 @@ export default function ContactFormPage() {
 
               <div>
                 <label htmlFor="message" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
-                  Message <span className="text-red-600">*</span>
+                  {t.forms.contact.message} <span className="text-red-600">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -221,7 +222,7 @@ export default function ContactFormPage() {
                   disabled={isSubmitting}
                   className="flex-1 bg-green-800 hover:bg-green-900 text-white h-12 md:h-14 text-base md:text-lg rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? t.forms.contact.sending : t.forms.contact.send}
                 </Button>
                 <Button
                   type="button"

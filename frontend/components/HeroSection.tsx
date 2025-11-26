@@ -1,10 +1,13 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { candidateData } from "@/data/candidateData";
+import { useLanguageAndData } from "@/hooks/useLanguageAndData";
 
 export default function HeroSection() {
+  const { language, t, data } = useLanguageAndData()
   return (
     <section className="relative min-h-[75vh] md:min-h-[85vh] flex items-center bg-linear-to-br from-stone-50 via-white to-green-50/30 overflow-hidden py-8 md:py-10">
       {/* Background texture */}
@@ -27,7 +30,7 @@ export default function HeroSection() {
           <div className="flex-1 space-y-6">
             <div className="relative w-fit">
               <Image
-                src={candidateData.images.bnpPoster}
+                src={data.images.bnpPoster}
                 alt="BNP Campaign Poster"
                 width={360}
                 height={120}
@@ -37,13 +40,13 @@ export default function HeroSection() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold leading-tight tracking-tight text-stone-900">
-              {candidateData.firstName} {candidateData.lastName}
+              {data.firstName} {data.lastName}
               <span className="text-red-600">.</span>
             </h1>
 
             <p className="text-lg md:text-xl md:mb-12 text-stone-600 max-w-2xl leading-relaxed">
-              {candidateData.bio.shortSegments?.length
-                ? candidateData.bio.shortSegments.map((segment, index) => (
+              {data.bio.shortSegments?.length
+                ? data.bio.shortSegments.map((segment: any, index: number) => (
                     <span
                       key={`bio-segment-${index}`}
                       className={segment.className || undefined}
@@ -51,7 +54,7 @@ export default function HeroSection() {
                       {segment.text}
                     </span>
                   ))
-                : candidateData.bio.short}
+                : data.bio.short}
             </p>
 
             <div className="flex flex-col md:flex-row gap-4 w-full">
@@ -64,7 +67,7 @@ export default function HeroSection() {
                   href="/#volunteer"
                   className="flex items-center justify-center"
                 >
-                  Join the Movement
+                  {t.hero.joinButton}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
@@ -78,7 +81,7 @@ export default function HeroSection() {
                   href="#manifesto"
                   className="flex items-center justify-center"
                 >
-                  Read Manifesto
+                  {t.hero.manifestoButton}
                 </Link>
               </Button>
             </div>
@@ -92,8 +95,8 @@ export default function HeroSection() {
 
               <div className="relative z-10 flex items-center justify-center">
                 <Image
-                  src={candidateData.images.hero}
-                  alt={candidateData.firstName}
+                  src={data.images.hero}
+                  alt={data.firstName}
                   width={520}
                   height={780}
                   className="object-contain w-full h-auto drop-shadow-2xl"
@@ -107,7 +110,7 @@ export default function HeroSection() {
               <div className="flex items-center w-fit gap-3 bg-white/95 backdrop-blur-sm px-4 sm:px-10 py-3 rounded-full shadow-lg border border-green-200 sm:w-auto max-w-md">
                 <div className="w-2 h-2 rounded-full bg-green-600 animate-pulse shrink-0" />
                 <span className="text-sm sm:text-base font-semibold text-green-900 uppercase tracking-wider text-center">
-                  {candidateData.partySlogan}
+                  {data.partySlogan}
                 </span>
               </div>
             </div>

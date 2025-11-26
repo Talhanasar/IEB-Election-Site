@@ -1,14 +1,20 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react"
-import { candidateData } from "@/data/candidateData"
+import { useLanguageAndData } from "@/hooks/useLanguageAndData";
+
 
 export default function Footer() {
+
+  const {t,data} = useLanguageAndData();
+
   const socialIcons = [
-    { Icon: Facebook, url: candidateData.socialMedia.facebook },
-    { Icon: Twitter, url: candidateData.socialMedia.twitter },
-    { Icon: Instagram, url: candidateData.socialMedia.instagram },
-    { Icon: Youtube, url: candidateData.socialMedia.youtube }
+    { Icon: Facebook, url: data.socialMedia.facebook },
+    { Icon: Twitter, url: data.socialMedia.twitter },
+    { Icon: Instagram, url: data.socialMedia.instagram },
+    { Icon: Youtube, url: data.socialMedia.youtube }
   ]
 
   return (
@@ -19,8 +25,8 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 overflow-hidden rounded-full ring-2 ring-green-700/30 group-hover:ring-green-700/50 transition-all shadow-sm">
                 <Image
-                  src={candidateData.images.logo}
-                  alt={candidateData.firstName}
+                  src={data.images.logo}
+                  alt={data.firstName}
                   fill
                   sizes="(max-width: 640px) 56px, 64px"
                   className="object-cover object-center"
@@ -28,15 +34,15 @@ export default function Footer() {
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="text-2xl font-serif font-bold text-white leading-tight">
-                  {candidateData.firstName.toUpperCase()} {candidateData.lastName.toUpperCase()}<span className="text-red-600">.</span>
+                  {data.firstName.toUpperCase()} {data.lastName.toUpperCase()}<span className="text-red-600">.</span>
                 </span>
                 <span className="text-xs text-stone-400 font-medium uppercase tracking-wider">
-                  {candidateData.footer.officeLabel}
+                  {data.footer.officeLabel}
                 </span>
               </div>
             </Link>
             <p className="max-w-md text-stone-400 leading-relaxed">
-              {candidateData.party.description}
+              {data.party.description}
             </p>
             <div className="flex gap-4">
               {socialIcons.map(({ Icon, url }, i) => (
@@ -57,18 +63,18 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-green-700 shrink-0" />
                 <span>
-                  {candidateData.contact.address.line1},
+                  {data.contact.address.line1},
                   <br />
-                  {candidateData.contact.address.line2}
+                  {data.contact.address.line2}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-green-700 shrink-0" />
-                <span>{candidateData.contact.phone}</span>
+                <span>{data.contact.phone}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-green-700 shrink-0" />
-                <span>{candidateData.contact.email}</span>
+                <span>{data.contact.email}</span>
               </li>
             </ul>
           </div>
@@ -78,22 +84,22 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="#about" className="hover:text-green-500 transition-colors">
-                  About {candidateData.firstName}
+                  About {data.firstName}
                 </Link>
               </li>
               <li>
                 <Link href="#manifesto" className="hover:text-green-500 transition-colors">
-                  Manifesto
+                  {t.navbar.manifesto}
                 </Link>
               </li>
               <li>
                 <Link href="#volunteer" className="hover:text-green-500 transition-colors">
-                  Volunteer
+                  {t.navbar.volunteer}
                 </Link>
               </li>
               <li>
                 <Link href="#donate" className="hover:text-green-500 transition-colors">
-                  Donate
+                  {t.navbar.donate}
                 </Link>
               </li>
             </ul>
@@ -101,7 +107,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-stone-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>{candidateData.footer.copyright}</p>
+          <p>{data.footer.copyright}</p>
           <div className="flex gap-8">
             <Link href="#" className="hover:text-white transition-colors">
               Privacy Policy

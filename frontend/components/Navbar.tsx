@@ -5,12 +5,16 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { candidateData } from "@/data/candidateData"
 import { Menu, X } from "lucide-react"
+import { useLanguage } from "@/hooks/useLanguage"
+import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { language, setLanguage } = useLanguage()
+  const { t ,data } = useLanguageAndData()
+
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -36,10 +40,10 @@ export default function Navbar() {
   }
 
   const navLinks = [
-    { href: "/", mbHref:"/", label: "Home" },
-    { href: "/#manifesto", mbHref:"/#manifesto", label: "Manifesto" },
-    { href: "/gallery", mbHref:"/gallery", label: "Gallery" },
-    { href: "/#contact", mbHref:"/#contactmb", label: "Contact" }
+    { href: "/", mbHref:"/", label: t.navbar.home },
+    { href: "/#manifesto", mbHref:"/#manifesto", label: t.navbar.manifesto },
+    { href: "/gallery", mbHref:"/gallery", label: t.navbar.gallery },
+    { href: "/#contact", mbHref:"/#contactmb", label: t.navbar.contact }
   ]
 
   return (
@@ -48,8 +52,8 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 overflow-hidden rounded-full ring-2 ring-green-800/20 group-hover:ring-green-800/40 transition-all group-hover:scale-105 shadow-sm">
             <Image
-              src={candidateData.images.logo}
-              alt={candidateData.firstName}
+              src={data.images.logo}
+              alt={data.firstName}
               fill
               sizes="(max-width: 640px) 56px, 64px"
               className="object-cover object-center"
@@ -58,10 +62,10 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col min-w-0">
             <span className="font-serif text-sm lg:text-xl sm:text-lg font-bold tracking-tight text-green-900 leading-tight truncate">
-              {candidateData.navName.toUpperCase()}<span className="text-red-600">.</span>
+              {data.navName.toUpperCase()}<span className="text-red-600">.</span>
             </span>
             <span className="text-[10px] sm:text-xs text-stone-500 font-medium uppercase tracking-wider">
-              {candidateData.tagline}
+              {data.tagline}
             </span>
           </div>
         </Link>
@@ -90,17 +94,24 @@ export default function Navbar() {
 
         <div className="flex items-center gap-4">
           <Button
+            onClick={() => setLanguage(language === "en" ? "bn" : "en")}
+            variant="ghost"
+            className="text-sm font-semibold text-stone-700 hover:text-green-800 px-3 rounded-full"
+          >
+            {language === "en" ? "বাংলা" : "English"}
+          </Button>
+          <Button
             asChild
             variant="outline"
             className="hidden md:flex border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
           >
-            <Link href="/form/volunteer">Become a Volunteer</Link>
+            <Link href="/form/volunteer">{t.navbar.volunteer}</Link>
           </Button>
           <Button
             asChild
             className="hidden md:flex bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
           >
-            <Link href="#donate">Donate</Link>
+            <Link href="#donate">{t.navbar.donate}</Link>
           </Button>
 
           {/* Hamburger Menu Button */}
@@ -155,6 +166,16 @@ export default function Navbar() {
 
                 {/* Mobile Menu Buttons */}
                 <div className="flex flex-col gap-3 pt-4 border-t border-stone-200">
+                  <Button
+                    onClick={() => {
+                      setLanguage(language === "en" ? "bn" : "en")
+                      closeMobileMenu()
+                    }}
+                    variant="outline"
+                    className="w-full border-stone-300 text-stone-700 hover:bg-stone-50 rounded-full"
+                  >
+                    {language === "en" ? "বাংলায় পড়ুন" : "Read in English"}
+                  </Button>
                   <Button
                     asChild
                     variant="outline"

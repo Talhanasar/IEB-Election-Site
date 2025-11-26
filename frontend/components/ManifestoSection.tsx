@@ -1,6 +1,8 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
+import { useLanguageAndData } from "@/hooks/useLanguageAndData";
 import { ArrowRight, Users, CheckCircle2, Images } from "lucide-react"
-import { candidateData } from "@/data/candidateData"
 import Link from "next/link"
 
 const iconMap = {
@@ -9,6 +11,9 @@ const iconMap = {
 }
 
 export default function ManifestoSection() {
+  const {t,data} = useLanguageAndData();
+  const candidateData = data;
+
   return (
     <section id="manifesto" className="py-24 bg-green-900 text-white relative overflow-hidden">
       <div

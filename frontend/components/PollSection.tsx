@@ -1,33 +1,31 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { BarChart3, CheckCircle2 } from "lucide-react"
-import { candidateData } from "@/data/candidateData"
+import { useState } from "react";
+import { BarChart3, CheckCircle2 } from "lucide-react";
+import { useLanguageAndData } from "@/hooks/useLanguageAndData";
 
 export default function PollSection() {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null)
-  const [hasVoted, setHasVoted] = useState(false)
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [hasVoted, setHasVoted] = useState(false);
 
-  // Sample poll data - in production, this would come from the backend
-  const pollOptions = [
-    { id: "support", label: "I support BNP's vision for Bangladesh", votes: 1247 },
-    { id: "considering", label: "I'm considering supporting BNP", votes: 856 },
-    { id: "neutral", label: "I'm neutral / undecided", votes: 432 },
-    { id: "other", label: "I support another party", votes: 289 }
-  ]
+  const { t, data } = useLanguageAndData();
+  const candidateData = data;
 
-  const totalVotes = pollOptions.reduce((sum, option) => sum + option.votes, 0)
+  // Poll data from candidate data
+  const pollOptions = candidateData.poll;
+
+  const totalVotes = pollOptions.reduce((sum, option) => sum + option.votes, 0);
 
   const handleVote = (optionId: string) => {
     if (!hasVoted) {
-      setSelectedOption(optionId)
-      setHasVoted(true)
+      setSelectedOption(optionId);
+      setHasVoted(true);
     }
-  }
+  };
 
   const getPercentage = (votes: number) => {
-    return totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0
-  }
+    return totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
+  };
 
   return (
     <section id="poll" className="py-24 bg-white">
@@ -36,31 +34,31 @@ export default function PollSection() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-900 text-sm font-semibold mb-4">
               <BarChart3 className="w-4 h-4" />
-              Public Opinion
+              {t.poll.subtitle}
             </div>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-4">
-              What's Your Opinion?
+              {t.poll.title}
             </h2>
             <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-              Share your thoughts about {candidateData.party.name} and help us understand the public sentiment.
+              {t.poll.description.replace('{{party}}', candidateData.party.name)}
             </p>
           </div>
 
           <div className="bg-stone-50 rounded-2xl p-8 border-2 border-stone-200">
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-stone-900 mb-2">
-                Do you support {candidateData.party.abbreviation}'s vision for Bangladesh?
+                {t.poll.question.replace('{{abbreviation}}', candidateData.party.abbreviation)}
               </h3>
               <p className="text-stone-600 text-sm">
-                {totalVotes.toLocaleString()} people have participated in this poll
+                {totalVotes.toLocaleString()} {t.poll.participants}
               </p>
             </div>
 
             <div className="space-y-4 mb-6">
               {pollOptions.map((option) => {
-                const percentage = getPercentage(option.votes)
-                const isSelected = selectedOption === option.id
-                const showResults = hasVoted
+                const percentage = getPercentage(option.votes);
+                const isSelected = selectedOption === option.id;
+                const showResults = hasVoted;
 
                 return (
                   <div
@@ -88,7 +86,9 @@ export default function PollSection() {
                               <CheckCircle2 className="w-3 h-3 text-white" />
                             )}
                           </div>
-                          <span className="font-medium text-stone-900">{option.label}</span>
+                          <span className="font-medium text-stone-900">
+                            {option.label}
+                          </span>
                         </label>
                         {showResults && (
                           <span className="text-sm font-bold text-stone-700 ml-4">
@@ -115,14 +115,14 @@ export default function PollSection() {
                       )}
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
 
             {!hasVoted && (
               <div className="text-center">
                 <p className="text-sm text-stone-500 mb-4">
-                  Select an option above to cast your vote
+                  {t.poll.selectOption}
                 </p>
               </div>
             )}
@@ -130,7 +130,7 @@ export default function PollSection() {
             {hasVoted && (
               <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 text-center">
                 <p className="text-green-900 font-semibold">
-                  ✓ Thank you for participating! Your vote has been recorded.
+                  ✓ {t.poll.thankyou}
                 </p>
               </div>
             )}
@@ -138,6 +138,5 @@ export default function PollSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

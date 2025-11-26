@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation"
 import { ArrowLeft, Users } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { candidateData } from "@/data/candidateData"
+import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 
 export default function VolunteerFormPage() {
+  const { t, data } = useLanguageAndData()
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -72,13 +73,13 @@ export default function VolunteerFormPage() {
           <div className="text-center">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-green-100 text-green-900 mb-4 md:mb-6">
               <Users className="w-4 md:w-5 h-4 md:h-5" />
-              <span className="text-sm md:text-base font-semibold">Volunteer Application</span>
+              <span className="text-sm md:text-base font-semibold">{t.forms.volunteer.header}</span>
             </div>
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-stone-900 mb-3 md:mb-4">
-              Join Our Volunteer Team
+              {t.forms.volunteer.header}
             </h1>
             <p className="text-sm md:text-base lg:text-lg text-stone-600 max-w-2xl mx-auto px-2">
-              Help us make a difference in our community. Fill out the form below to become a volunteer for {candidateData.firstName}'s campaign.
+              {t.forms.volunteer.description} {data.firstName}'s campaign.
             </p>
           </div>
         </div>
@@ -88,7 +89,7 @@ export default function VolunteerFormPage() {
           <form onSubmit={handleSubmit} className="bg-white rounded-xl md:rounded-2xl shadow-lg p-5 md:p-8 lg:p-12 space-y-5 md:space-y-6">
             {/* Personal Information */}
             <div className="border-b border-stone-200 pb-6">
-              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">Personal Information</h2>
+              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">{t.forms.volunteer.personalInfo}</h2>
               <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <label htmlFor="fullName" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
@@ -156,7 +157,7 @@ export default function VolunteerFormPage() {
 
             {/* Address Information */}
             <div className="border-b border-stone-200 pb-6">
-              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">Address Information</h2>
+              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">{t.forms.volunteer.addressInfo}</h2>
               <div className="space-y-6">
                 <div>
                   <label htmlFor="address" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
@@ -210,7 +211,7 @@ export default function VolunteerFormPage() {
 
             {/* Professional Information */}
             <div className="border-b border-stone-200 pb-6">
-              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">Professional Information</h2>
+              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">{t.forms.volunteer.professionalInfo}</h2>
               <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <label htmlFor="occupation" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
@@ -275,7 +276,7 @@ export default function VolunteerFormPage() {
 
             {/* Volunteer Details */}
             <div>
-              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">Volunteer Details</h2>
+              <h2 className="text-lg md:text-2xl font-serif font-bold text-stone-900 mb-4 md:mb-6">{t.forms.volunteer.volunteerDetails}</h2>
               <div className="space-y-6">
                 <div>
                   <label htmlFor="reference" className="block text-xs md:text-sm font-semibold text-stone-700 mb-1 md:mb-2">
@@ -344,7 +345,7 @@ export default function VolunteerFormPage() {
                 disabled={isSubmitting}
                 className="flex-1 bg-green-800 hover:bg-green-900 text-white h-12 md:h-14 text-base md:text-lg rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Submitting..." : "Submit Application"}
+                {isSubmitting ? t.forms.volunteer.submitting : t.forms.volunteer.submit}
               </Button>
               <Button
                 type="button"

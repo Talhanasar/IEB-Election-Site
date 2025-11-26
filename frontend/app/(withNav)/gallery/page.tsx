@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react"
 import { Images, X, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import { candidateData } from "@/data/candidateData"
-
-const galleryImages = candidateData.gallery.images
-const categories = candidateData.gallery.categories
+import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 
 export default function GalleryPage() {
+  const { t, data } = useLanguageAndData()
+  const galleryImages = data.gallery.images
+  const categories = data.gallery.categories
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -81,7 +81,7 @@ export default function GalleryPage() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/10 backdrop-blur-sm mb-4 md:mb-6 border border-white/20">
                 <Images className="w-5 md:w-6 h-5 md:h-6" />
-                <span className="text-base md:text-lg font-semibold">Campaign Gallery</span>
+                <span className="text-base md:text-lg font-semibold">{t.gallery.title}</span>
               </div>
               <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-3 md:mb-4">
                 Our Campaign Journey
@@ -130,7 +130,7 @@ export default function GalleryPage() {
               </div>
             ) : filteredImages.length === 0 ? (
               <div className="text-center py-20">
-                <p className="text-stone-500 text-base md:text-lg">No images found in this category.</p>
+                <p className="text-stone-500 text-base md:text-lg">{t.gallery.noImages}</p>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
@@ -171,7 +171,7 @@ export default function GalleryPage() {
             {/* Image Count */}
             <div className="text-center mt-8 md:mt-12">
               <p className="text-sm md:text-base text-stone-600">
-                Showing <span className="font-semibold text-green-800">{filteredImages.length}</span>{" "}
+                {t.gallery.showing} <span className="font-semibold text-green-800">{filteredImages.length}</span>{" "}
                 {filteredImages.length === 1 ? "image" : "images"}
                 {selectedCategory !== "All" && ` in ${selectedCategory}`}
               </p>
