@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useLanguageAndData } from "@/hooks/useLanguageAndData"
+import { sharedImages } from "@/data/candidateData"
 
 export default function BannerSection() {
   const { data } = useLanguageAndData()
@@ -9,7 +10,7 @@ export default function BannerSection() {
     <section className="w-full">
       <div className="relative h-[250px] md:h-[450px] w-full">
         <Image
-          src={data.images.banner}
+          src={sharedImages.banner}
           alt={`Campaign Banner - ${data.partySlogan}`}
           fill
           sizes="100vw"

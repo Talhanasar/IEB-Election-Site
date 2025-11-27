@@ -3,6 +3,7 @@
 import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 import Image from "next/image"
 import { Check } from "lucide-react"
+import { sharedImages } from "@/data/candidateData"
 
 export default function AboutPage() {
   const { data, t, language } = useLanguageAndData()
@@ -50,7 +51,7 @@ export default function AboutPage() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                   <div className="aspect-[3/4] relative">
                     <Image
-                      src={data.images.about}
+                      src={sharedImages.about}
                       alt={data.firstName}
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 360px"

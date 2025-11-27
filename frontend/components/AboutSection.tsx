@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Check } from "lucide-react"
 import { useLanguageAndData } from "@/hooks/useLanguageAndData"
 import { Button } from "@/components/ui/button"
+import { sharedImages } from "@/data/candidateData"
 
 export default function AboutSection() {
   const { t, data, language } = useLanguageAndData()
@@ -28,7 +29,7 @@ export default function AboutSection() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <div className="aspect-3/4 relative">
                 <Image
-                  src={data.images.about}
+                  src={sharedImages.about}
                   alt={data.firstName}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"

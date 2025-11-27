@@ -1,4 +1,4 @@
-const sharedImages = {
+export const sharedImages = {
   logo: "/humam/humam_1.jpg",
   hero: "/humam/humam.png",
   about: "/humam/humam_2.jpg",
@@ -9,7 +9,7 @@ const sharedImages = {
   getInvolved: "/humam/humam_last.png",
 }
 
-const sharedCalendar = {
+export const sharedCalendar = {
   embedUrl:
     "https://calendar.google.com/calendar/embed?src=1fafa8ab28415db6a09b018be97495592b38dba0cf79e60af85612ddcfc83e27%40group.calendar.google.com&ctz=Asia%2FDhaka",
 }
@@ -25,9 +25,6 @@ export const candidateData = {
     tagline: "For Change",
     partySlogan: "Bangladesh Zindabad",
     heroSlogan: "Your voice, your vote, your future.",
-
-    // Images
-    images: sharedImages,
 
     // Bio & Description
     bio: {
@@ -310,9 +307,6 @@ export const candidateData = {
       },
     ],
 
-    // Calendar
-    calendar: sharedCalendar,
-
     // Gallery
     gallery: {
       images: [
@@ -396,9 +390,6 @@ export const candidateData = {
     tagline: "পরিবর্তনের জন্য",
     partySlogan: "বাংলাদেশ জিন্দাবাদ",
     heroSlogan: "আপনার কণ্ঠ, আপনার ভোট, আপনার ভবিষ্যৎ।",
-
-    // ছবি
-    images: sharedImages,
 
     // জীবনী এবং বর্ণনা
     bio: {
@@ -683,9 +674,6 @@ export const candidateData = {
           "মিডিয়া সম্বোধন করুন এবং আমাদের সর্বশেষ ক্যাম্পেইন উদ্যোগ এবং অর্জনগুলি শেয়ার করুন।",
       },
     ],
-
-    // ক্যালেন্ডার
-    calendar: sharedCalendar,
 
     // গ্যালারি
     gallery: {

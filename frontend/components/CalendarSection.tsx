@@ -2,6 +2,7 @@
 
 import { Calendar, MapPin, Clock } from "lucide-react"
 import { useLanguageAndData } from "@/hooks/useLanguageAndData"
+import { sharedCalendar } from "@/data/candidateData"
 
 export default function CalendarSection() {
   const { t, data } = useLanguageAndData()
@@ -56,7 +57,7 @@ export default function CalendarSection() {
             <div className="p-6">
               <div className="relative w-full" style={{ paddingBottom: "75%" }}>
                 <iframe
-                  src={data.calendar?.embedUrl || "https://calendar.google.com/calendar/embed?src=1fafa8ab28415db6a09b018be97495592b38dba0cf79e60af85612ddcfc83e27%40group.calendar.google.com&ctz=Asia%2FDhaka"}
+                  src={sharedCalendar.embedUrl}
                   style={{
                     position: "absolute",
                     top: 0,

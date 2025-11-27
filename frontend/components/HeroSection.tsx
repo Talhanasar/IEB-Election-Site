@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useLanguageAndData } from "@/hooks/useLanguageAndData";
+import { sharedImages } from "@/data/candidateData";
 
 export default function HeroSection() {
   const { language, t, data } = useLanguageAndData()
@@ -30,7 +31,7 @@ export default function HeroSection() {
           <div className="flex-1 space-y-6">
             <div className="relative w-50 h-40 md:w-fit md:h-fit overflow-hidden">
               <Image
-                src={data.images.bnpPoster}
+                src={sharedImages.bnpPoster}
                 alt="BNP Campaign Poster"
                 width={200}
                 height={200}
@@ -97,11 +98,11 @@ export default function HeroSection() {
             <div className="relative w-full max-w-md mx-auto select-none">
               <div className="absolute -top-8 -right-10 w-28 h-28 bg-green-800/10 rounded-full blur-2xl" />
               <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-red-600/10 rounded-full blur-2xl" />
-              {data.images?.fatherImage && (
+              {sharedImages?.fatherImage && (
                 <div className="absolute top-0 right-0 sm:-right-8 md:-top-5 md:-right-12 z-20">
                   <div className="relative w-20 h-20 sm:w-22 sm:h-22 md:w-25 md:h-25 overflow-hidden rounded-2xl">
                     <Image
-                      src={data.images.fatherImage}
+                      src={sharedImages.fatherImage}
                       alt="Legacy portrait"
                       fill
                       className="object-cover"
@@ -113,7 +114,7 @@ export default function HeroSection() {
 
               <div className="relative z-10 flex items-center justify-center">
                 <Image
-                  src={data.images.hero}
+                  src={sharedImages.hero}
                   alt={data.firstName}
                   width={520}
                   height={780}

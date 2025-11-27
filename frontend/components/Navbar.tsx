@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Menu, X, Globe } from "lucide-react"
 import { useLanguage } from "@/hooks/useLanguage"
 import { useLanguageAndData } from "@/hooks/useLanguageAndData"
+import { sharedImages } from "@/data/candidateData"
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -54,7 +55,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 overflow-hidden rounded-full ring-2 ring-green-800/20 group-hover:ring-green-800/40 transition-all group-hover:scale-105 shadow-sm">
             <Image
-              src={data.images.logo}
+              src={sharedImages.logo}
               alt={data.firstName}
               fill
               sizes="(max-width: 640px) 56px, 64px"
