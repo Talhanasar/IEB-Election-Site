@@ -29,14 +29,15 @@ export default function HeroSection() {
         <div className="flex flex-col-reverse sm:flex-row gap-10 lg:gap-16 items-center">
           {/* Left Column */}
           <div className="flex-1 space-y-6">
-            <div className="relative w-50 h-40 md:w-fit md:h-fit overflow-hidden">
+            <div className="relative mb-1 w-full h-fit max-w-[190px] sm:max-w-[230px]">
               <Image
                 src={sharedImages.bnpPoster}
                 alt="BNP Campaign Poster"
-                width={200}
-                height={200}
-                className="object-contain w-full h-auto max-w-[320px] sm:max-w-[360px]"
+                width={230}
+                height={230}
+                className="object-contain w-full h-auto"
                 priority
+                unoptimized
               />
             </div>
 
