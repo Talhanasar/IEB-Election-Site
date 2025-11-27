@@ -29,7 +29,7 @@ export default function HeroSection() {
         <div className="flex flex-col-reverse sm:flex-row gap-10 lg:gap-16 items-center">
           {/* Left Column */}
           <div className="flex-1 space-y-6">
-            <div className="relative mb-1 w-full h-fit max-w-[190px] sm:max-w-[230px]">
+            <div className="relative -mb-2 w-full h-fit max-w-[190px] sm:max-w-[230px]">
               <Image
                 src={sharedImages.bnpPoster}
                 alt="BNP Campaign Poster"
@@ -41,10 +41,20 @@ export default function HeroSection() {
               />
             </div>
 
-            <h1 className={`${language === "en" ? "text-2xl" : "text-4xl"} md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold leading-tight tracking-tight text-stone-900 mb-1`}>
-              {data.firstName} {data.lastName}
-              <span className="text-red-600">.</span>
-            </h1>
+            <div className="flex items-center gap-3 mb-1">
+              <h1 className={`${language === "en" ? "text-xl" : "text-4xl"} md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold leading-tight tracking-tight text-stone-900`}>
+                {data.firstName} {data.lastName}
+                <span className="text-red-600">.</span>
+              </h1>
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10 shrink-0">
+                <Image
+                  src={sharedImages.electoralSymbol}
+                  alt="Electoral Symbol"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
             {data.heroSlogan && (
               <p className="text-sm sm:text-base text-green-600/90 font-medium leading-relaxed">
                 {data.heroSlogan}

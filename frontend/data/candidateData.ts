@@ -3,7 +3,7 @@ export const sharedImages = {
   hero: "/humam/humam.png",
   about: "/humam/humam_2.jpg",
   banner: "/humam/cover_humam.png",
-  electoralSymbol: "/humam/marka.jpg",
+  electoralSymbol: "/humam/dhan.png",
   bnpPoster: "/humam/bnp.png",
   fatherImage: "/humam/father.png",
   getInvolved: "/humam/humam_last.png",
