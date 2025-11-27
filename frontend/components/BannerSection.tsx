@@ -10,7 +10,7 @@ export default function BannerSection() {
       <div className="relative h-[250px] md:h-[450px] w-full">
         <Image
           src={data.images.banner}
-          alt={`Campaign Banner - ${data.campaignSlogan}`}
+          alt={`Campaign Banner - ${data.partySlogan}`}
           fill
           sizes="100vw"
           className="object-cover"
