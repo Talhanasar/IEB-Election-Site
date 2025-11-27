@@ -42,7 +42,8 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", mbHref:"/", label: t.navbar.home },
-    { href: "/#manifesto", mbHref:"/#manifesto", label: t.navbar.manifesto },
+    { href: "/about", mbHref:"/about", label: t.navbar.about },
+    { href: "/manifesto", mbHref:"/manifesto", label: t.navbar.manifesto },
     { href: "/gallery", mbHref:"/gallery", label: t.navbar.gallery },
     { href: "/#contact", mbHref:"/#contactmb", label: t.navbar.contact }
   ]
@@ -71,7 +72,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
           {navLinks.map((link) => {
             const active = isActive(link.href)
             return (
@@ -161,13 +162,13 @@ export default function Navbar() {
           <Button
             asChild
             variant="outline"
-            className="hidden md:flex border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
+            className="hidden lg:flex border-green-700 text-green-800 hover:bg-green-50 rounded-full bg-transparent"
           >
             <Link href="/form/volunteer">{t.navbar.volunteer}</Link>
           </Button>
           <Button
             asChild
-            className="hidden md:flex bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
+            className="hidden lg:flex bg-green-800 hover:bg-green-900 text-white rounded-full px-6 shadow-lg shadow-green-900/20"
           >
             <Link href="#donate">{t.navbar.donate}</Link>
           </Button>
@@ -175,7 +176,7 @@ export default function Navbar() {
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors relative z-50 ${
+            className={`lg:hidden p-2 rounded-lg transition-colors relative z-50 ${
               isMobileMenuOpen
                 ? "text-white bg-green-900/70"
                 : "text-stone-700 hover:text-green-800 hover:bg-green-50"
@@ -196,15 +197,15 @@ export default function Navbar() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 h-screen bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 h-screen bg-black/50 backdrop-blur-sm z-40 lg:hidden"
             onClick={closeMobileMenu}
           />
 
           {/* Mobile Menu */}
-          <div className="fixed top-20 left-0 right-0 bg-white border-b border-stone-200 shadow-xl z-50 md:hidden animate-in slide-in-from-top duration-300">
+          <div className="fixed top-20 left-0 right-0 bg-white border-b border-stone-200 shadow-xl z-50 lg:hidden animate-in slide-in-from-top duration-300">
             <nav className="container mx-auto px-4 py-6">
               <div className="flex flex-col gap-4">
-                {navLinks.map((link) => {
+                {navLinks.map((link) => { 
                   const active = isActive(link.href)
                   return (
                     <Link
@@ -224,36 +225,6 @@ export default function Navbar() {
 
                 {/* Mobile Menu Buttons */}
                 <div className="flex flex-col gap-3 pt-4 border-t border-stone-200">
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => {
-                        setLanguage("en")
-                        closeMobileMenu()
-                      }}
-                      className={`flex-1 px-4 py-3 rounded-full font-medium text-sm transition-all duration-150 flex items-center justify-center gap-2 ${
-                        language === "en"
-                          ? "bg-green-800 text-white shadow-lg shadow-green-900/20"
-                          : "border border-stone-300 text-stone-700 hover:bg-stone-50"
-                      }`}
-                    >
-                      <span>🇬🇧</span>
-                      English
-                    </button>
-                    <button
-                      onClick={() => {
-                        setLanguage("bn")
-                        closeMobileMenu()
-                      }}
-                      className={`flex-1 px-4 py-3 rounded-full font-medium text-sm transition-all duration-150 flex items-center justify-center gap-2 ${
-                        language === "bn"
-                          ? "bg-green-800 text-white shadow-lg shadow-green-900/20"
-                          : "border border-stone-300 text-stone-700 hover:bg-stone-50"
-                      }`}
-                    >
-                      <span>🇧🇩</span>
-                      বাংলা
-                    </button>
-                  </div>
                   <Button
                     asChild
                     variant="outline"

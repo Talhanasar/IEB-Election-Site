@@ -83,12 +83,12 @@ export default function Footer() {
             <h4 className="text-white font-bold tracking-wider uppercase text-sm">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#about" className="hover:text-green-500 transition-colors">
-                  About {data.firstName}
+                <Link href="/about" className="hover:text-green-500 transition-colors">
+                  {t.navbar.about}
                 </Link>
               </li>
               <li>
-                <Link href="#manifesto" className="hover:text-green-500 transition-colors">
+                <Link href="/manifesto" className="hover:text-green-500 transition-colors">
                   {t.navbar.manifesto}
                 </Link>
               </li>
@@ -98,7 +98,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#donate" className="hover:text-green-500 transition-colors">
+                <Link href="" className="hover:text-green-500 transition-colors">
                   {t.navbar.donate}
                 </Link>
               </li>

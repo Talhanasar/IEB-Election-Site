@@ -1,7 +1,8 @@
 export const bnTranslations = {
   navbar: {
     home: "হোম",
-    manifesto: "ম্যানিফেস্টো",
+    about: "সম্পর্কে",
+    manifesto: "ইশতেহার",
     gallery: "গ্যালারি",
     contact: "যোগাযোগ",
     volunteer: "স্বেচ্ছাসেবক হন",

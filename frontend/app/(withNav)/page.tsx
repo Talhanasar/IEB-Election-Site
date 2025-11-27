@@ -11,13 +11,13 @@ export default function CandidatePage() {
   return (
     <>
       <HeroSection />
+      <AboutSection />
+      <ManifestoSection />
       <VideoSection />
       <CalendarSection />
-      <ManifestoSection />
-      <AboutSection />
-      <BannerSection />
       <GetInvolvedSection />
       <PollSection />
+      <BannerSection />
     </>
   )
 }

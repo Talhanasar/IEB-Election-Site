@@ -28,21 +28,26 @@ export default function HeroSection() {
         <div className="flex flex-col-reverse sm:flex-row gap-10 lg:gap-16 items-center">
           {/* Left Column */}
           <div className="flex-1 space-y-6">
-            <div className="relative w-fit">
+            <div className="relative w-50 h-40 md:w-fit md:h-fit overflow-hidden">
               <Image
                 src={data.images.bnpPoster}
                 alt="BNP Campaign Poster"
-                width={360}
-                height={120}
+                width={200}
+                height={200}
                 className="object-contain w-full h-auto max-w-[320px] sm:max-w-[360px]"
                 priority
               />
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold leading-tight tracking-tight text-stone-900">
+            <h1 className={`${language === "en" ? "text-2xl" : "text-4xl"} md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold leading-tight tracking-tight text-stone-900 mb-1`}>
               {data.firstName} {data.lastName}
               <span className="text-red-600">.</span>
             </h1>
+            {data.heroSlogan && (
+              <p className="text-sm sm:text-base text-green-600/90 font-medium leading-relaxed">
+                {data.heroSlogan}
+              </p>
+            )}
 
             <p className="text-lg md:text-xl md:mb-12 text-stone-600 max-w-2xl leading-relaxed">
               {data.bio.shortSegments?.length
@@ -78,7 +83,7 @@ export default function HeroSection() {
                 className="border-2 border-green-800/30 text-green-900 hover:bg-green-50 hover:border-green-800/50 h-14 px-8 text-lg bg-white/50 backdrop-blur-sm rounded-full font-semibold w-full sm:flex-1"
               >
                 <Link
-                  href="#manifesto"
+                  href="/manifesto"
                   className="flex items-center justify-center"
                 >
                   {t.hero.manifestoButton}
@@ -92,6 +97,19 @@ export default function HeroSection() {
             <div className="relative w-full max-w-md mx-auto select-none">
               <div className="absolute -top-8 -right-10 w-28 h-28 bg-green-800/10 rounded-full blur-2xl" />
               <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-red-600/10 rounded-full blur-2xl" />
+              {data.images?.fatherImage && (
+                <div className="absolute top-0 right-0 sm:-right-8 md:-top-5 md:-right-12 z-20">
+                  <div className="relative w-20 h-20 sm:w-22 sm:h-22 md:w-25 md:h-25 overflow-hidden rounded-2xl">
+                    <Image
+                      src={data.images.fatherImage}
+                      alt="Legacy portrait"
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  </div>
+                </div>
+              )}
 
               <div className="relative z-10 flex items-center justify-center">
                 <Image
