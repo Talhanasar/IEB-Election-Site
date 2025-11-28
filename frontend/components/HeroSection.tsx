@@ -37,7 +37,6 @@ export default function HeroSection() {
                 height={230}
                 className="object-contain w-full h-auto"
                 priority
-                unoptimized
               />
             </div>
 

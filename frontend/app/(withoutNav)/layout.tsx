@@ -3,8 +3,8 @@ import "../globals.css";
 import { LanguageProvider } from "@/store/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "IEB Election Site",
-  description: "IEB Election Site",
+  title: "Form | Hummam Quader Chowdhury",
+  description: "Fill the form to register for the IEB Election.",
 };
 
 export default function WithoutNavLayout({

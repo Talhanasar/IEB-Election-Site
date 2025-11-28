@@ -19,7 +19,7 @@ export default function Footer() {
   ]
 
   return (
-    <section className="py-24 bg-stone-900 text-stone-400 border-t border-stone-800">
+    <section className=" pt-16 pb-6 bg-stone-900 text-stone-400 border-t border-stone-800">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-4 gap-12">
           <div className="space-y-6 lg:col-span-2">

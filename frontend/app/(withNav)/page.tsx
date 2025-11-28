@@ -1,3 +1,5 @@
+"use client"
+
 import HeroSection from "@/components/HeroSection"
 import VideoSection from "@/components/VideoSection"
 import CalendarSection from "@/components/CalendarSection"

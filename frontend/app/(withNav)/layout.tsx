@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/store/LanguageContext";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "IEB Election Site",
-  description: "IEB Election Site",
-};
+  title: "Home | Hummam Quader Chowdhury",
+  description: "Official website of Hummam Quader Chowdhury, candidate for Chattogram-7, Rangunia.",
+}
 
 export default function RootLayout({
   children,
@@ -16,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased font-sans text-stone-900 selection:bg-green-100 selection:text-green-900">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans text-stone-900 selection:bg-green-100 selection:text-green-900`}>
         <LanguageProvider>
           <div className="min-h-screen flex flex-col">
             <Navbar />
