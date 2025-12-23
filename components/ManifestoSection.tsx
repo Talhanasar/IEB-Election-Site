@@ -51,32 +51,6 @@ export default function ManifestoSection() {
             )
           })}
         </div>
-
-        {/* Gallery Section */}
-        <div className="mt-8 sm:mt-12 lg:mt-16 pt-8 sm:pt-12 lg:pt-16 border-t border-green-700/50">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
-            <div className="flex items-start sm:items-center gap-3 sm:gap-4 w-full lg:w-auto">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-700 rounded-xl flex items-center justify-center shrink-0">
-                <Images className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif font-bold mb-1 sm:mb-2">{t.gallery.cta.title}</h3>
-                <p className="text-sm sm:text-base text-green-100/80">
-                  {t.gallery.cta.description}
-                </p>
-              </div>
-            </div>
-            <Button
-              asChild
-              className="bg-white text-green-900 hover:bg-green-50 h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg rounded-full font-semibold w-full sm:w-auto"
-            >
-              <Link href="/gallery" className="flex items-center justify-center">
-                {t.gallery.cta.button}
-                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   )

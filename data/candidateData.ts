@@ -24,7 +24,8 @@ export const candidateData = {
     // Taglines & Slogans
     tagline: "For Change",
     partySlogan: "Bangladesh Zindabad",
-    heroSlogan: "Your voice, your vote, your future.",
+    heroSlogan: "Your Voice, Your Vote, Your Future.",
+    tag:"Dhan er shish",
 
     // Bio & Description
     bio: {
@@ -389,6 +390,7 @@ export const candidateData = {
     // স্লোগান এবং মন্ত্র
     tagline: "পরিবর্তনের জন্য",
     partySlogan: "বাংলাদেশ জিন্দাবাদ",
+    tag: "ধানের শিষ",
     heroSlogan: "আপনার কণ্ঠ, আপনার ভোট, আপনার ভবিষ্যৎ।",
 
     // জীবনী এবং বর্ণনা

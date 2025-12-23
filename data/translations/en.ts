@@ -32,6 +32,7 @@ export const enTranslations = {
     description: "Moments, memories, and milestones from our campaign for a better Bangladesh",
     noImages: "No images found in this category.",
     showing: "Showing",
+    photos: "{count} photos",
     cta: {
       title: "Campaign Gallery",
       description: "Explore photos and moments from our campaign journey",
